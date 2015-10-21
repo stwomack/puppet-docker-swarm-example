@@ -32,7 +32,23 @@ node 'swarm-1' {
 }
 
 node default {
-  include base
+  hiera_include('classes')
+
+  sudo::conf { 'vagrant':
+    priority => 30,
+    content  => 'vagrant ALL=(ALL) NOPASSWD:ALL',
+  }
+
+  file { '/etc/update-motd.d':
+    purge => true
+  }
+
+  ::docker::image { 'swarm': }
+
+  ::docker::run { 'swarm':
+    image   => 'swarm',
+    command => "join --addr=${::ipaddress_eth1}:2375 consul://swarm-1:8500/swarm_nodes"
+  }
 
   exec { 'consul join swarm-1':
     path      => '/usr/local/bin/',

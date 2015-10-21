@@ -16,6 +16,10 @@ Puppet.
 
 ## Usage
 
+    bundle install
+    librarian-puppet install
+    vagrant plugin install vagrant-hosts
+
     vagrant up --provider virtualbox
 
 This will launch 2 virtual machines, install Consul and register a

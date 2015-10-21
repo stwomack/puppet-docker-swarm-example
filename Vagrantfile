@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       instance.vm.provision :puppet do |puppet|
         puppet.options        = '--debug --verbose --summarize --reports store --hiera_config=/vagrant/hiera.yaml'
         puppet.manifests_path = 'manifests'
-        puppet.module_path    = [ 'modules', 'vendor/modules' ]
+        puppet.module_path    = [ 'vendor/modules' ]
         puppet.manifest_file  = 'base.pp'
       end
       instance.vm.network "private_network", :ip => ip

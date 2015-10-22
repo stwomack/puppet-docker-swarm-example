@@ -47,7 +47,7 @@ node default {
 
   ::docker::run { 'swarm':
     image   => 'swarm',
-    command => "join --addr=${::ipaddress_eth1}:2375 consul://swarm-1:8500/swarm_nodes"
+    command => "join --addr=10.20.3.11:2375 consul://swarm-1:8500/swarm_nodes"
   }
 
   exec { 'consul join swarm-1':
